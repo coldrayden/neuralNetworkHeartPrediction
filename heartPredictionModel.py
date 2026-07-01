@@ -24,10 +24,15 @@ numerics = ['age', 'trestbps', 'chol', 'thalach', 'oldpeak', 'slope']
 #one-hot encode categorical variables and normalize numerical variables as neural networks require all inputs to be numeric
 df = pd.get_dummies(df, columns = categorical_variables, dtype = int)
 
+print(f"Subset of data in the table shown below")
 print(f"\n: {df.head}")
+input("Press Enter to continue")
+
+
 #split data into 80% training and 20% test data. Will normalize only training data separately from test data in order not to influence training data
 test_df = df.sample(frac=0.2, random_state=42)
 train_df = df.drop(test_df.index)
+
 
 print(f"Rows & Columns of test set after splitting: {test_df.shape}")
 print(f"Rosws & Columns of training set after splitting {train_df.shape}")
@@ -60,6 +65,7 @@ print(train_Y[:5])
 
 print(f"Rows of Target variable in Training data set: {train_Y.shape}")
 print(f"Rows of Target variable in Test data set: {test_Y.shape}")
+input("Press enter to continue")
 
 
 ###   Building the Model  ####
@@ -79,7 +85,8 @@ output = keras.layers.Dense(1, activation = "sigmoid", name = "Output")(h)
 #Input and Output Pair form the model
 model = keras.Model(input, output)
 
-print(f"Here's the model summary \n: {model.summary()}")
+print(f"Here's the model summary")
+print(f"{model.summary()}")
 
 #keras.utils.plot_model(model, show_shapes=True)
 
